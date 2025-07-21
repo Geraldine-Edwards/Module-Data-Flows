@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title> </title>
+    <title>My Book Library</title>
     <meta
       charset="utf-8"
       name="viewport"
@@ -18,78 +18,99 @@
   </head>
 
   <body>
-    <div class="jumbotron text-center">
-      <h1>Library</h1>
-      <p>Add books to your virtual library</p>
-    </div>
+    <div class="container-fluid">
+      <div class="jumbotron text-center">
+        <h1 class="text-center mb-4 text-primary">My Book Library</h1>
+        <p class="text-center mb-4">Add books to your virtual library</p>
+      </div>
 
-    <button data-toggle="collapse" data-target="#demo" class="btn btn-info">
-      Add new book
-    </button>
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-8">
+            <button data-toggle="collapse" data-target="#demo" class="btn btn-info mb-3">
+              Add new book
+            </button>
 
-    <div id="demo" class="collapse">
-      <div class="form-group">
-        <label for="title">Title:</label>
-        <input
-          type="title"
-          class="form-control"
-          id="title"
-          name="title"
-          required
-        />
-        <label for="author">Author: </label>
-        <input
-          type="author"
-          class="form-control"
-          id="author"
-          name="author"
-          required
-        />
-        <label for="pages">Pages:</label>
-        <input
-          type="number"
-          class="form-control"
-          id="pages"
-          name="pages"
-          required
-        />
-        <label class="form-check-label">
-          <input
-            type="checkbox"
-            class="form-check-input"
-            id="check"
-            value=""
-          />Read
-        </label>
-        <input
-          type="submit"
-          value="Submit"
-          class="btn btn-primary"
-          onclick="submit();"
-        />
+            <div id="demo" class="collapse">
+              <div class="card mb-4">
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="title">Title:</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="title"
+                      name="title"
+                      required
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="author">Author:</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="author"
+                      name="author"
+                      required
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="pages">Pages:</label>
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="pages"
+                      name="pages"
+                      required
+                    />
+                  </div>
+                  <div class="form-check mb-3">
+                    <input
+                      type="checkbox"
+                      class="form-check-input"
+                      id="check"
+                      value=""
+                    />
+                    <label class="form-check-label" for="check">
+                      I have read this book
+                    </label>
+                  </div>
+                  <input
+                    type="submit"
+                    value="Add Book"
+                    class="btn btn-primary"
+                    onclick="submit();"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="table-responsive">
+              <table class="table table-striped table-hover" id="display">
+                <thead class="thead-dark">
+                  <tr>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Number of Pages</th>
+                    <th>Read</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-
-    <table class="table" id="display">
-      <thead class="thead-dark">
-        <tr>
-          <th>Title</th>
-          <th>Author</th>
-          <th>Number of Pages</th>
-          <th>Read</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-      </tbody>
-    </table>
 
     <script src="script.js"></script>
   </body>

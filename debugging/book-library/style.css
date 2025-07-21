@@ -1,19 +1,19 @@
-.form-group {
-  width: 400px;
-  height: 300px;
-  align-self: left;
-  padding-left: 20px;
+body {
+  background-color: #f8f9fa;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.table th {
+  background-color: #343a40;
+  color: white;
+  text-align: center;
 }
 
 .btn {
-  display: block;
+  margin: 2px;
+  border-radius: 20px;
 }
 
-.form-check-label {
-  padding-left: 20px;
-  margin: 5px 0px 5px 0px;
-}
-
-button.btn-info {
-  margin: 20px;
+.card {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
