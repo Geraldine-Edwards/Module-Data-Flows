@@ -25,92 +25,109 @@
       </div>
 
       <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-md-8">
-            <button data-toggle="collapse" data-target="#demo" class="btn btn-info mb-3">
-              Add new book
-            </button>
-
-            <div id="demo" class="collapse">
-              <div class="card mb-4">
-                <div class="card-body">
-                  <div class="form-group">
-                    <label for="title">Title:</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="title"
-                      name="title"
-                      required
-                    />
-                  </div>
-                  <div class="form-group">
-                    <label for="author">Author:</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="author"
-                      name="author"
-                      required
-                    />
-                  </div>
-                  <div class="form-group">
-                    <label for="pages">Pages:</label>
-                    <input
-                      type="number"
-                      class="form-control"
-                      id="pages"
-                      name="pages"
-                      required
-                    />
-                  </div>
-                  <div class="form-check mb-3">
-                    <input
-                      type="checkbox"
-                      class="form-check-input"
-                      id="check"
-                      value=""
-                    />
-                    <label class="form-check-label" for="check">
-                      I have read this book
-                    </label>
-                  </div>
-                  <input
-                    type="submit"
-                    value="Add Book"
-                    class="btn btn-primary"
-                    onclick="submit();"
-                  />
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <!-- Reading Progress Section -->
+          <div class="card mb-4">
+            <div class="card-header bg-primary text-white">
+              <h4 class="mb-0" id="progress-header"> Reading Progress</h4>
+            </div>
+            <div class="card-body">
+              <div class="progress" style="height: 25px;">
+                <div id="progress-bar" class="progress-bar bg-success" role="progressbar" style="width: 0%">
+                  <!-- Progress percentage gets dynamically updated -->
                 </div>
               </div>
             </div>
+          </div>
 
-            <div class="table-responsive">
-              <table class="table table-striped table-hover" id="display">
-                <thead class="thead-dark">
-                  <tr>
-                    <th>Title</th>
-                    <th>Author</th>
-                    <th>Number of Pages</th>
-                    <th>Read</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                </tbody>
-              </table>
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-md-8">
+                <button data-toggle="collapse" data-target="#demo" class="btn btn-info mb-3">
+                  Add new book
+                </button>
+
+              <div id="demo" class="collapse">
+                <div class="card mb-4">
+                  <div class="card-body">
+                    <div class="form-group">
+                      <label for="title">Title:</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="title"
+                        name="title"
+                        required
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="author">Author:</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="author"
+                        name="author"
+                        required
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="pages">Pages:</label>
+                      <input
+                        type="number"
+                        class="form-control"
+                        id="pages"
+                        name="pages"
+                        required
+                      />
+                    </div>
+                    <div class="form-check mb-3">
+                      <input
+                        type="checkbox"
+                        class="form-check-input"
+                        id="check"
+                        value=""
+                      />
+                      <label class="form-check-label" for="check">
+                        I have read this book
+                      </label>
+                    </div>
+                    <input
+                      type="submit"
+                      value="Add Book"
+                      class="btn btn-primary"
+                      onclick="submit();"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="table-responsive">
+                <table class="table table-striped table-hover" id="display">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th>Title</th>
+                      <th>Author</th>
+                      <th>Number of Pages</th>
+                      <th>Read</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
     <script src="script.js"></script>
   </body>

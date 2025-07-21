@@ -17,6 +17,21 @@ function loadFromStorage() {
   }
 }
 
+// function to display the current number of books read vs unread
+function updateProgressBar() {
+  const totalBooks = myLibrary.length;
+  const readBooks = myLibrary.filter(book => book.check).length;
+  const percent = totalBooks === 0 ? 0 : Math.round((readBooks / totalBooks) * 100);
+
+    // update the progress bar text
+  document.getElementById('progress-header').innerText = `Read ${readBooks} out of ${totalBooks} books`;
+
+  //  update the progress bar width
+  const progressBar = document.getElementById('progress-bar');
+  progressBar.style.width = percent + "%";
+
+}
+
 window.addEventListener("load", function (e) {
   // load saved books from local storage
   loadFromStorage();
@@ -91,6 +106,9 @@ function render() {
   //delete all the rows except for the table header row (delete all rows except row 0)
   for (let n = rowsNumber - 1; n > 0; n--) {
     table.deleteRow(n);
+  
+  // update the progress bar after deleting rows
+  updateProgressBar();
   }
   //loop through each book and create a new row for each book, insert 5 cells per row
   let length = myLibrary.length;
