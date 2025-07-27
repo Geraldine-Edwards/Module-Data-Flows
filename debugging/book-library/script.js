@@ -1,3 +1,13 @@
+// Book class (must be defined before use)
+class Book {
+  constructor(title, author, pages, check) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.check = check;
+  }
+}
+
 // initialise an empty array to hold my book library
 let myLibrary = [];
 
@@ -53,14 +63,6 @@ function populateStorage() {
     myLibrary.push(book1, book2);
     render();
   }
-}
-
-// setup the Book class
-function Book(title, author, pages, check) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.check = check;
 }
 
 // clear the form after submission
@@ -159,6 +161,7 @@ function handleToggleRead(index) {
 // delete a book from the library
 function handleDeleteBook(index) {
   alert("You have deleted title: " + myLibrary[index].title);
+  // remove the book at the given index from myLibrary
   myLibrary.splice(index, 1);
   saveToStorage();
   render();
