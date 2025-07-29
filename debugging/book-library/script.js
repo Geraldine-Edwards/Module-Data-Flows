@@ -32,7 +32,10 @@ function loadFromStorage() {
   const stored = localStorage.getItem("myLibrary");
   // only parse if there is something stored
   if (stored) {
-    myLibrary = JSON.parse(stored);
+    // clear the array in place
+    myLibrary.length = 0;
+    // add loaded books to the existing array
+    myLibrary.push(...JSON.parse(stored));
   }
 }
 
@@ -178,3 +181,5 @@ window.addEventListener("load", function (e) {
   }
   render();
 });
+
+module.exports = { Book, saveToStorage, loadFromStorage, myLibrary };

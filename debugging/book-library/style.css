@@ -3,6 +3,13 @@ body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.progress {
+  height: 25px;
+}
+.progress-bar {
+  width: 0%;
+}
+
 .table th {
   background-color: #343a40;
   color: white;
