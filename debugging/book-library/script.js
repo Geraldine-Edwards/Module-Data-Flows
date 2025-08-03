@@ -12,15 +12,13 @@ class Book {
 let myLibrary = [];
 
 // DOM elements (using destructuring assignment)
-const { title, author, pages, check } = {
-  title: document.getElementById("title"),
-  author: document.getElementById("author"),
-  pages: document.getElementById("pages"),
-  check: document.getElementById("check"),
-};
-const progressHeader = document.getElementById("progress-header");
-const progressBar = document.getElementById("progress-bar");
-const table = document.getElementById("display");
+const titleInput = document.getElementById("title");
+const authorInput = document.getElementById("author");
+const pagesInput = document.getElementById("pages");
+const checkInput = document.getElementById("check");
+const progressHeaderEl = document.getElementById("progress-header");
+const progressBarEl = document.getElementById("progress-bar");
+const tableEl = document.getElementById("display");
 // add event listener for the add book button
 document.addEventListener("DOMContentLoaded", () => {
   const bookForm = document.getElementById("bookForm");
