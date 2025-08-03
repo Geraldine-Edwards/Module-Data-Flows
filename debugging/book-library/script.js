@@ -30,11 +30,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
   // add event listener for clear all button
-  const clearAllBtn = document.getElementById("clearAllBooksBtn");
+  const delAllBooksBtn = document.getElementById("delAllBooksBtn");
   // check if the button exists before adding the event listeners to prevent errors if the button is not present in the DOM
-  if (clearAllBtn) {
-    clearAllBtn.addEventListener("click", () => {
-      if (confirm("Are you sure you want to clear all books?")) {
+  if (delAllBooksBtn) {
+    delAllBooksBtn.addEventListener("click", () => {
+      if (confirm("Are you sure you want to delete all books?")) {
         myLibrary.length = 0;
         saveToStorage();
         render();
@@ -208,22 +208,20 @@ function createBookRow(book, i) {
   pagesCell.className = "text-center";
 
   //add and wait for action for read/unread button
-  let changeBtn = document.createElement("button");
-  // set the button ID to the index of the book
-  changeBtn.id = i;
+  let toggleReadBtn = document.createElement("button");
   // append the button to the wasReadCell row
-  wasReadCell.appendChild(changeBtn);
+  wasReadCell.appendChild(toggleReadBtn);
   // the button state reflects the read status of the book
-  setReadButtonState(changeBtn, check);
+  setReadButtonState(toggleReadBtn, check);
   // when clicked the button will toggle the read status indicated by the handleToggleRead function
-  changeBtn.addEventListener("click", () => handleToggleRead(i));
+  toggleReadBtn.addEventListener("click", () => handleToggleRead(i));
 
   //add delete button to every row and render again
-  let delButton = document.createElement("button");
-  deleteCell.appendChild(delButton);
-  delButton.className = "btn btn-warning";
-  delButton.innerHTML = "Delete";
-  delButton.addEventListener("click", () => {
+  let delBookBtn = document.createElement("button");
+  deleteCell.appendChild(delBookBtn);
+  delBookBtn.className = "btn btn-warning";
+  delBookBtn.innerHTML = "Delete";
+  delBookBtn.addEventListener("click", () => {
     handleDeleteBook(i);
   });
 }
