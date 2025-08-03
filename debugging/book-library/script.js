@@ -29,6 +29,18 @@ document.addEventListener("DOMContentLoaded", () => {
       submit();
     });
   }
+  // add event listener for clear all button
+  const clearAllBtn = document.getElementById("clearAllBooksBtn");
+  // check if the button exists before adding the event listeners to prevent errors if the button is not present in the DOM
+  if (clearAllBtn) {
+    clearAllBtn.addEventListener("click", () => {
+      if (confirm("Are you sure you want to clear all books?")) {
+        myLibrary.length = 0;
+        saveToStorage();
+        render();
+      }
+    });
+  }
 });
 
 // function to save the book library to localStorage
@@ -53,7 +65,7 @@ function loadFromStorage() {
 // function to display the current number of books read vs unread
 function updateProgressBar() {
   // check if progressHeader and progressBar exist in the DOM
-  if (!progressHeader || !progressBar) {
+  if (!progressHeaderEl || !progressBarEl) {
     console.error(
       "Progress bar or header not found in the DOM. Progress tracking will not be displayed."
     );
@@ -69,10 +81,10 @@ function updateProgressBar() {
     totalBooks === 0 ? 0 : Math.round((readBooks / totalBooks) * 100);
 
   // update the progress bar text
-  progressHeader.innerText = `Read ${readBooks} out of ${totalBooks} books`;
+  progressHeaderEl.innerText = `Read ${readBooks} out of ${totalBooks} books`;
 
   //  update the progress bar width (the percentage will be reflected in the width of the styling of the bar)
-  progressBar.style.width = percent + "%";
+  progressBarEl.style.width = percent + "%";
 }
 
 function populateStorage() {
@@ -92,10 +104,10 @@ function populateStorage() {
 
 // clear the form after submission
 function clearForm() {
-  title.value = "";
-  author.value = "";
-  pages.value = "";
-  check.checked = false;
+  titleInput.value = "";
+  authorInput.value = "";
+  pagesInput.value = "";
+  checkInput.checked = false;
 }
 
 // validate book input
@@ -126,9 +138,9 @@ function validateBookInput(titleValue, authorValue, pagesValue) {
 // handle form submission - check the right input from forms and if its ok -> add the new book (object in array)
 function submit() {
   // trim all inputs for leading/trailing spaces
-  const titleValue = title.value.trim();
-  const authorValue = author.value.trim();
-  const pagesValue = pages.value.trim();
+  const titleValue = titleInput.value.trim();
+  const authorValue = authorInput.value.trim();
+  const pagesValue = pagesInput.value.trim();
 
   // call the validation function
   const validationResult = validateBookInput(
@@ -155,7 +167,7 @@ function submit() {
   }
 
   // create a new book object and add it to myLibrary and save to storage (use the converted pages value in pagesNum that has been validated rather than the object's pages.value - therefore book.pages is now a number)
-  let book = new Book(titleValue, authorValue, pagesNum, check.checked);
+  let book = new Book(titleValue, authorValue, pagesNum, checkInput.checked);
   myLibrary.push(book);
   saveToStorage(); // save the book after adding
   render();
@@ -165,10 +177,10 @@ function submit() {
 // render the table with books from myLibrary
 function render() {
   // count the existing number of rows in the table
-  let rowsNumber = table.rows.length;
+  let rowsNumber = tableEl.rows.length;
   //delete all the rows except for the table header row (delete all rows except row 0)
   for (let n = rowsNumber - 1; n > 0; n--) {
-    table.deleteRow(n);
+    tableEl.deleteRow(n);
   }
   // update the progress bar after deleting rows
   updateProgressBar();
@@ -180,7 +192,7 @@ function render() {
 // create a table row for each book
 function createBookRow(book, i) {
   const { title, author, pages, check } = book;
-  let row = table.insertRow(1); // insert new row at position 1 to keep the header intact
+  let row = tableEl.insertRow(1); // insert new row at position 1 to keep the header intact
   let titleCell = row.insertCell(0);
   let authorCell = row.insertCell(1);
   let pagesCell = row.insertCell(2);
@@ -208,8 +220,6 @@ function createBookRow(book, i) {
 
   //add delete button to every row and render again
   let delButton = document.createElement("button");
-  // set the button ID to the index of the book + 5 to avoid conflicts with changeBtn IDs
-  delButton.id = i + 5;
   deleteCell.appendChild(delButton);
   delButton.className = "btn btn-warning";
   delButton.innerHTML = "Delete";
@@ -240,11 +250,14 @@ function handleToggleRead(index) {
 
 // delete a book from the library
 function handleDeleteBook(index) {
-  alert("You have deleted title: " + myLibrary[index].title);
-  // remove the book at the given index from myLibrary
-  myLibrary.splice(index, 1);
-  saveToStorage();
-  render();
+  // confirm with the user that they want to delete the book
+  if (confirm("Are you sure you want to delete this book?")) {
+    alert("You have deleted title: " + myLibrary[index].title);
+    // remove the book at the given index from myLibrary
+    myLibrary.splice(index, 1);
+    saveToStorage();
+    render();
+  }
 }
 
 // when the window loads, we want to load the saved books from local storage
