@@ -125,14 +125,12 @@ function validateBookInput(titleValue, authorValue, pagesValue) {
         "Please enter a valid author name (letters, spaces, hyphens, apostrophes, and periods only).",
     };
   }
-  // convert the pages value to a number (to make validation easier)
-  const pagesNum = Number(pagesValue);
-  // validate the number
-  if (isNaN(pagesNum) || pagesNum <= 0 || !Number.isInteger(pagesNum)) {
+  // check if pagesValue is a valid integer string and convert to a number
+  if (!/^\d+$/.test(pagesValue) || Number(pagesValue) <= 0) {
     return { error: "Please enter a valid whole number for pages." };
   }
   // return an error, but if no error return null and also return the parsed pagesNum value so it can be used later in the submit function
-  return { error: null, pagesNum };
+  return { error: null };
 }
 
 // handle form submission - check the right input from forms and if its ok -> add the new book (object in array)
@@ -153,8 +151,8 @@ function submit() {
     alert(validationResult.error);
     return false;
   }
-  // if no error, use the pagesNum from the validation result
-  const pagesNum = validationResult.pagesNum;
+  // convert the pages value to a number by using the validated pagesValue
+  const pagesNum = Number(pagesValue);
 
   // check if the book already exists in myLibrary
   const duplicate = myLibrary.some(
