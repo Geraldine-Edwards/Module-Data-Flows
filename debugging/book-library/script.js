@@ -129,11 +129,11 @@ function validateBookInput(titleValue, authorValue, pagesValue) {
   if (!/^\d+$/.test(pagesValue) || Number(pagesValue) <= 0) {
     return { error: "Please enter a valid whole number for pages." };
   }
-  // return an error, but if no error return null and also return the parsed pagesNum value so it can be used later in the submit function
+  // return an error, but if no error return null
   return { error: null };
 }
 
-// handle form submission - check the right input from forms and if its ok -> add the new book (object in array)
+// handle form submission - trim the inputs then validate them, if ok, convert the pages value to a number then check if it exists in the array and if not then add the new book (object in array)
 function submit() {
   // trim all inputs for leading/trailing spaces
   const titleValue = titleInput.value.trim();
@@ -156,8 +156,7 @@ function submit() {
 
   // check if the book already exists in myLibrary
   const duplicate = myLibrary.some(
-    (book) =>
-      book.title.trim() === titleValue && book.author.trim() === authorValue
+    (book) => book.title === titleValue && book.author === authorValue
   );
   if (duplicate) {
     alert("This book is already in your library.");
@@ -197,8 +196,8 @@ function createBookRow(book, i) {
   let wasReadCell = row.insertCell(3);
   let deleteCell = row.insertCell(4);
   // use textContent to ensure no HTML is injected and remains plain text
-  titleCell.textContent = title.trim();
-  authorCell.textContent = author.trim();
+  titleCell.textContent = title;
+  authorCell.textContent = author;
   // textContent coerces the value of pages to a string
   pagesCell.textContent = pages;
 
