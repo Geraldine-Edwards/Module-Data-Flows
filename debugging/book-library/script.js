@@ -173,12 +173,12 @@ function submit() {
 
 // render the table with books from myLibrary
 function render() {
-  // count the existing number of rows in the table
-  let rowsNumber = tableEl.rows.length;
-  //delete all the rows except for the table header row (delete all rows except row 0)
-  for (let n = rowsNumber - 1; n > 0; n--) {
-    tableEl.deleteRow(n);
-  }
+  // get the tbody element or if it doesn't exist, return early to prevent errors
+  const tbody = tableEl.querySelector("tbody");
+  if (!tbody) return;
+  // clear all rows at once by setting innerHTML to an empty string
+  tbody.innerHTML = "";
+
   // update the progress bar after deleting rows
   updateProgressBar();
 
